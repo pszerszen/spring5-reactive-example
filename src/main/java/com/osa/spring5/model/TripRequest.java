@@ -3,7 +3,6 @@ package com.osa.spring5.model;
 import lombok.Data;
 
 import java.time.format.DateTimeFormatter;
-import javax.xml.bind.annotation.XmlElement;
 
 @Data
 public class TripRequest {
@@ -20,7 +19,6 @@ public class TripRequest {
     private int children;
     private boolean bikes;
     private Currency currency;
-    @XmlElement(required = true)
     private String departureDate;
 
 }
