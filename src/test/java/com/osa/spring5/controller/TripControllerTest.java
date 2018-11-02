@@ -4,9 +4,11 @@ import com.osa.spring5.model.Trip;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 class TripControllerTest {
@@ -20,10 +22,12 @@ class TripControllerTest {
 
     @Test
     void findTrips() {
-        client.get()
+        Flux<Trip> flux = client.get()
                 .uri("trips/find/{number}", 100)
+                .accept(MediaType.TEXT_EVENT_STREAM)
                 .retrieve()
-                .bodyToFlux(Trip.class)
-                .subscribe(trip -> log.error("Got trip: {}", trip));
+                .bodyToFlux(Trip.class);
+        flux.subscribe(trip -> log.info("Got trip: {}", trip));
+        flux.toStream(10).collect(Collectors.toList());
     }
 }
