@@ -23,9 +23,9 @@ public class TripController {
     public Flux<Trip> findTrips(@PathVariable int number) {
         log.info("Requested for {} trips.", number);
         try {
-            return service.findTrips(null, number);
+            return service.findTrips(number);
         } finally {
-            log.info("Finished request");
+            log.info("Call handled.");
         }
     }
 }

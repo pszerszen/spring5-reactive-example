@@ -1,7 +1,6 @@
 package com.osa.spring5.service;
 
 import com.osa.spring5.model.Trip;
-import com.osa.spring5.model.TripRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,9 @@ public class TripService {
 
     private final PodamFactory podamFactory;
 
-    public Flux<Trip> findTrips(TripRequest request, int expectedNumber) {
-        return Flux.fromStream(IntStream.range(0, expectedNumber).boxed().parallel()
+    public Flux<Trip> findTrips(int expectedNumber) {
+        return Flux.fromStream(IntStream.range(0, expectedNumber)
+                .boxed().parallel()
                 .map(this::prepare));
     }
 

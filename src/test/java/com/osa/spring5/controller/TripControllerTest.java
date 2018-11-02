@@ -21,7 +21,7 @@ class TripControllerTest {
     @Test
     void findTrips() {
         client.get()
-                .uri("trips/find/{number}", 10000)
+                .uri("trips/find/{number}", 100)
                 .retrieve()
                 .bodyToFlux(Trip.class)
                 .subscribe(trip -> log.error("Got trip: {}", trip));
