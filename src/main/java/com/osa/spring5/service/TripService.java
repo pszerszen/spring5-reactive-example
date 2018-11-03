@@ -25,7 +25,7 @@ public class TripService {
 
     private Trip prepare(int i) {
         Trip trip = podamFactory.manufacturePojo(Trip.class);
-        log.info("Trip nr: {}", i+1);
+        log.info("Trip nr: {}", i + 1);
         return trip;
     }
 }

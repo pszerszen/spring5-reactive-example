@@ -37,7 +37,7 @@ public class NetworkService {
     }
 
     private Station prepareStation(int i) {
-        log.info("Station nr {}", i);
+        log.info("Station nr {}", i + 1);
         return podamFactory.manufacturePojo(Station.class);
     }
 }

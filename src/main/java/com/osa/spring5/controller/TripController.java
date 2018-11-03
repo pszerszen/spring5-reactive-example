@@ -19,7 +19,7 @@ public class TripController {
 
     private final TripService service;
 
-    @GetMapping("/find/{number}")
+    @GetMapping("/{number}")
     public Flux<Trip> findTrips(@PathVariable int number) {
         log.info("Requested for {} trips.", number);
         try {
